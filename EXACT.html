@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Devil Gifts Hamper</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#f8f8f8;
+      color:#222;
+      overflow-x:hidden;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:100vh;
+      background:url('https://i.ibb.co/bR8R0BvV/IMG-0895.jpg') center/cover no-repeat;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+    }
+
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.55);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      padding:20px;
+    }
+
+    .hero h1{
+      font-size:52px;
+      margin-bottom:10px;
+      font-weight:700;
+    }
+
+    .hero p{
+      font-size:20px;
+      margin-bottom:25px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 28px;
+      background:#ff2e63;
+      color:white;
+      border:none;
+      border-radius:50px;
+      font-size:16px;
+      text-decoration:none;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:600;
+    }
+
+    .btn:hover{
+      background:#e91e63;
+      transform:translateY(-2px);
+    }
+
+    /* SECTION */
+
+    .section-title{
+      text-align:center;
+      font-size:34px;
+      margin:50px 0 25px;
+      font-weight:700;
+    }
+
+    /* PRODUCTS */
+
+    .products-wrapper{
+      overflow-x:auto;
+      padding:20px;
+    }
+
+    .products{
+      display:flex;
+      gap:20px;
+      min-width:max-content;
+    }
+
+    .card{
+      background:white;
+      width:280px;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 5px 20px rgba(0,0,0,0.08);
+      transition:0.3s;
+      flex-shrink:0;
+    }
+
+    .card:hover{
+      transform:translateY(-5px);
+    }
+
+    .card img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:18px;
+    }
+
+    .card h3{
+      margin-bottom:10px;
+      font-size:22px;
+    }
+
+    .price{
+      color:#ff2e63;
+      font-size:20px;
+      font-weight:600;
+      margin-bottom:15px;
+    }
+
+    .add-btn{
+      width:100%;
+      padding:12px;
+      border:none;
+      background:#111;
+      color:white;
+      border-radius:12px;
+      cursor:pointer;
+      font-size:15px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    .add-btn:hover{
+      background:#ff2e63;
+    }
+
+    /* CART BUTTON */
+
+    .cart-icon{
+      position:fixed;
+      right:20px;
+      bottom:90px;
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      background:#111;
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      cursor:pointer;
+      z-index:1000;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .cart-count{
+      position:absolute;
+      top:-5px;
+      right:-5px;
+      background:red;
+      color:white;
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    /* CART MODAL */
+
+    .cart-modal{
+      position:fixed;
+      top:0;
+      right:-100%;
+      width:100%;
+      max-width:420px;
+      height:100%;
+      background:white;
+      z-index:2000;
+      transition:0.4s;
+      overflow-y:auto;
+      padding:25px;
+      box-shadow:-5px 0 20px rgba(0,0,0,0.1);
+    }
+
+    .cart-modal.active{
+      right:0;
+    }
+
+    .close{
+      font-size:28px;
+      cursor:pointer;
+      float:right;
+    }
+
+    .cart-item{
+      padding:12px 0;
+      border-bottom:1px solid #ddd;
+    }
+
+    .form-group{
+      margin-top:15px;
+    }
+
+    .form-group input{
+      width:100%;
+      padding:12px;
+      border:1px solid #ccc;
+      border-radius:10px;
+      font-size:15px;
+    }
+
+    .send-btn{
+      width:100%;
+      margin-top:20px;
+      padding:14px;
+      border:none;
+      background:#ff2e63;
+      color:white;
+      border-radius:12px;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    /* WHATSAPP */
+
+    .whatsapp{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      width:60px;
+      height:60px;
+      background:#25D366;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-size:30px;
+      text-decoration:none;
+      z-index:1000;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px 20px;
+      margin-top:40px;
+      background:#111;
+      color:white;
+    }
+
+    @media(max-width:768px){
+      .hero h1{
+        font-size:38px;
+      }
+
+      .hero p{
+        font-size:17px;
+      }
+
+      .card{
+        width:240px;
+      }
+
+      .card img{
+        height:240px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+      <h1>Devil Gifts Hamper</h1>
+      <p>Fresh Finds, Best Prices</p>
+
+      <a href="#products" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+
+  <h2 class="section-title" id="products">Our Products</h2>
+
+  <div class="products-wrapper">
+    <div class="products">
+
+      <div class="card">
+        <img src="https://i.ibb.co/0pNq2149/IMG-20260509-WA0098.jpg" alt="">
+        <div class="card-content">
+          <h3>Luxury Gift Hamper</h3>
+          <div class="price">₹799</div>
+          <button class="add-btn" onclick="addToCart('Luxury Gift Hamper',799)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://i.ibb.co/tw8GYKZB/IMG-20260509-WA0099.jpg" alt="">
+        <div class="card-content">
+          <h3>Premium Surprise Box</h3>
+          <div class="price">₹999</div>
+          <button class="add-btn" onclick="addToCart('Premium Surprise Box',999)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://i.ibb.co/BVcP4qcK/IMG-20260509-WA0096.jpg" alt="">
+        <div class="card-content">
+          <h3>Chocolate Gift Pack</h3>
+          <div class="price">₹699</div>
+          <button class="add-btn" onclick="addToCart('Chocolate Gift Pack',699)">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CART ICON -->
+
+  <div class="cart-icon" onclick="toggleCart()">
+    🛒
+    <div class="cart-count" id="cart-count">0</div>
+  </div>
+
+  <!-- CART MODAL -->
+
+  <div class="cart-modal" id="cartModal">
+
+    <span class="close" onclick="toggleCart()">×</span>
+
+    <h2>Your Cart</h2>
+
+    <div id="cart-items"></div>
+
+    <div class="form-group">
+      <input type="text" id="customerName" placeholder="Your Name">
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="customerPhone" placeholder="Phone Number">
+    </div>
+
+    <button class="send-btn" onclick="sendOrder()">
+      Send Order
+    </button>
+
+  </div>
+
+  <!-- WHATSAPP -->
+
+  <a class="whatsapp" href="https://wa.me/99999999" target="_blank">
+    💬
+  </a>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <h3>Devil Gifts Hamper</h3>
+    <p>Jaipur</p>
+    <p>Email: priyameena9686@gmail.com</p>
+  </footer>
+
+  <!-- EMAILJS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+
+    emailjs.init("YOUR_PUBLIC_KEY");
+
+    let cart = [];
+
+    function addToCart(name, price){
+
+      cart.push({name, price});
+
+      updateCart();
+
+      alert(name + " added to cart!");
+    }
+
+    function updateCart(){
+
+      document.getElementById("cart-count").innerText = cart.length;
+
+      let cartItems = document.getElementById("cart-items");
+
+      cartItems.innerHTML = "";
+
+      cart.forEach((item,index)=>{
+
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <strong>${item.name}</strong><br>
+            ₹${item.price}
+          </div>
+        `;
+      });
+    }
+
+    function toggleCart(){
+      document.getElementById("cartModal").classList.toggle("active");
+    }
+
+    function sendOrder(){
+
+      const name = document.getElementById("customerName").value;
+      const phone = document.getElementById("customerPhone").value;
+
+      if(cart.length === 0){
+        alert("Cart is empty!");
+        return;
+      }
+
+      if(name === "" || phone === ""){
+        alert("Please fill all details");
+        return;
+      }
+
+      let orderList = "";
+
+      cart.forEach(item=>{
+        orderList += `${item.name} - ₹${item.price}\n`;
+      });
+
+      const templateParams = {
+        customer_name: name,
+        customer_phone: phone,
+        order_items: orderList,
+        to_email: "priyameena9686@gmail.com"
+      };
+
+      emailjs.send(
+        "YOUR_SERVICE_ID",
+        "YOUR_TEMPLATE_ID",
+        templateParams
+      )
+      .then(function(response){
+
+        alert("Order Sent Successfully!");
+
+        cart = [];
+
+        updateCart();
+
+        document.getElementById("customerName").value = "";
+        document.getElementById("customerPhone").value = "";
+
+      }, function(error){
+
+        alert("Failed to send order");
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
